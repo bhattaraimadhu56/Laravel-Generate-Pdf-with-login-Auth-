@@ -22,22 +22,55 @@ class CrudsController extends Controller
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function show($id)
+    {
+        $data = Crud::findOrFail($id);
+      return view('view', compact('data'));
+      
+    }
+
+    // Export single data information to pdf
+    public function downloadPdf($id)
+    {
+        $data = Crud::findOrFail($id);
+ 
+        
+    //   return view('view', compact('data'));
+      // $pdf = PDF::loadView('view', ['data' => $data]);
+    //   loadView('viewName ', compact('data'));
+       $pdf = PDF::loadView('generatePdf', compact('data'));
+        // just genertate randeom name for pdf
+       $any_name = 'madhu___'.date('Y-m-d H:i:s').'____'.rand();  
+        return $pdf->download($any_name.'.pdf');
+        // return $pdf->download('madhu.pdf');
+        // return $pdf->stream('madhu.pdf');
+        
+    }
+
+    // Export All data information to pdf
+    public function exportPdf()
+    {
+        $data = Crud::latest()->paginate(5);
+        $pdf = PDF::loadView('exportAllToPdf', compact('data'));
+        // just genertate randeom name for pdf
+       $any_name = 'alltoPdf__'.date('Y-m-d H:i:s').'____'.rand();  
+       // return $pdf->download($any_name.'.pdf');
+       return $pdf->stream($any_name.'.pdf');
+        // return $pdf->download('madhu.pdf');
+         //return $pdf->stream('madhu.pdf');
+    }
+
+
+
+    
     public function create()
     {
         return view('create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -65,60 +98,18 @@ class CrudsController extends Controller
         return redirect('crud')->with('success', 'Data Added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     $data = Crud::findOrFail($id);
-    //     return view('view', compact('data'));
-    // }
+     
 
 
-
-
-    public function show($id)
-    {
-        $data = Crud::findOrFail($id);
-      return view('view', compact('data'));
-      
-    }
-    public function downloadPdf($id)
-    {
-        $data = Crud::findOrFail($id);
-    //   return view('view', compact('data'));
-      // $pdf = PDF::loadView('view', ['data' => $data]);
-    //   loadView('viewName ', compact('data'));
-       $pdf = PDF::loadView('generatePdf', compact('data'));
-        // just genertate randeom name for pdf
-       $any_name = 'madhu___'.date('Y-m-d H:i:s').'____'.rand();  
-        return $pdf->download($any_name.'.pdf');
-        // return $pdf->download('madhu.pdf');
-        // return $pdf->stream('madhu.pdf');
-        
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = Crud::findOrFail($id);
         return view('edit', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+
+
     public function update(Request $request, $id)
     {
         $image_name = $request->hidden_image;
@@ -162,12 +153,10 @@ class CrudsController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    
+    
+    
     public function destroy($id)
     {
         $data = Crud::findOrFail($id);

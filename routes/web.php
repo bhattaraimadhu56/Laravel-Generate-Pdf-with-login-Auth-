@@ -35,4 +35,5 @@ Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback')
 // Resource Controller 
 Route::resource('crud','CrudsController');
 
-Route::get('/crud/downloadPdf/{id}', 'CrudsController@downloadPdf')->name('crud.downloadPdf');
+ Route::get('/crud/downloadPdf/{id}', 'CrudsController@downloadPdf')->name('crud.downloadPdf');
+Route::get('/exportAllToPdf', 'CrudsController@exportPdf')->name('crud.allToPdf');
