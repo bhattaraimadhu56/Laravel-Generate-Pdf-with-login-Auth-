@@ -1,5 +1,7 @@
 @extends('parent')
-
+<!-- For  -->
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script> -->
+  
 @section('main')
 @if($errors->any())
 <div class="alert alert-danger">
@@ -32,7 +34,16 @@
 			<br>
 		</div>
 	</div>
-	
+
+	<div class="form-group">
+		<label class="col-md-4 text-right">Enter Address</label>
+		<div class="col-md-8">
+			<input type="text" name="address" id ="address" class="form-control input-lg" placeholder="Enter your Address" />
+			<br>
+		</div>
+		
+	</div>
+		
 	<div class="form-group">
 		<label class="col-md-4 text-right">Short Description</label>
 		<div class="col-md-8">
@@ -61,8 +72,26 @@
 	</div>
 
 </form>
+<!-- javascript code  -->
+<!-- <script src="https://maps.google.com/maps/api/js?key=Your_Google_Key; libraries=places&callback=initAutocomplete" type="text/javascript"></script> -->
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyDxTV3a6oL6vAaRookXxpiJhynuUpSccjY&amp;libraries=places&amp;callback=initAutocomplete" type="text/javascript"></script>
+<script>
+   google.maps.event.addDomListener(window, 'load', initialize);
+
+   function initialize() {
+       var input = document.getElementById('address');
+       var autocomplete = new google.maps.places.Autocomplete(input);
+       autocomplete.addListener('place_changed', function() {
+       var place = autocomplete.getPlace(); 
+	   // to get latitude and longitude  $('#latitude') means in which id we want to show
+        //    $('#latitude').val(place.geometry['location'].lat());
+        //    $('#longitude').val(place.geometry['location'].lng());
+               });
+   }
+</script>
+
+
+
 
 @endsection
-
-
 

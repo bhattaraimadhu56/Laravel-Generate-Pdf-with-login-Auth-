@@ -43,6 +43,7 @@ class CrudsController extends Controller
         $request->validate([
             'first_name'    =>  'required',
             'last_name'     =>  'required',
+            'address'     =>  'required',
             'image'         =>  'required|image|max:2048',
              'desc'          =>  'required|min:10'
         ]);
@@ -54,6 +55,7 @@ class CrudsController extends Controller
         $form_data = array(
             'first_name'       =>   $request->first_name,
             'last_name'        =>   $request->last_name,
+            'address'     =>  $request->address,
             'image'            =>   $new_name,
              'desc'        =>   $request->desc,
         );
@@ -128,6 +130,7 @@ class CrudsController extends Controller
             $request->validate([
                 'first_name'    =>  'required',
                 'last_name'     =>  'required',
+                'address'     =>  'required',
                 'image'         =>  'required|image|max:2048',
                  'desc'         =>'required'
             ]);
@@ -139,6 +142,7 @@ class CrudsController extends Controller
             $request->validate([
                 'first_name'    =>  'required',
                 'last_name'     =>  'required',
+                'address'     =>  'required',
                 // Condition with No images so  No need to validate 
                 'desc'         =>'required'
             ]);
@@ -147,6 +151,7 @@ class CrudsController extends Controller
         $form_data = array(
             'first_name'    =>  $request->first_name,
             'last_name'     =>  $request->last_name,
+            'address'     =>  $request->address,
             'image'         =>  $image_name,
             'desc'          =>$request->desc
         );
