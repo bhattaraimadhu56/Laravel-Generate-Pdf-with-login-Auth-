@@ -14,7 +14,22 @@
 
 		<!-- method 2 (works on normal view but not in pdf) to access images files  -->\
 		<!-- bootstrap 3 img-circle -->
-	<img src="{{asset('images/'.$data->image )}}" class="img-circle" width="300">
+		<!-- while uploading sungle images -->
+	<!-- <img src="{{asset('images/'.$data->image )}}" class="img-circle" width="300"> -->
+	
+<!-- // For multiple images to get All images works -->
+						
+						@foreach (explode('|', $data->image) as $img)
+						<img src="{{ URL::to('/') }}/images/{{ $img }}" class="mb-3 mt-4 img-thumbnail img-fluid" width="300" height="200"  />
+						@endforeach
+
+
+
+
+
+
+
+
 	<!-- Bootstrap 4 rounded-circle -->
 	<!-- <img src="{{asset('images/'.$data->image )}}" class="rounded-circle" width="500"> -->
 	

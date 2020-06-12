@@ -1,7 +1,7 @@
 @extends('layouts.app')
   
 @section('content')
-<div class="container">
+<!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -73,5 +73,51 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->           
+
+ <div id="carouselExampleCaptions" class="carousel slide carousel-fade " data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                  </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!-- <img src="1.jpg" class="d-block w-100" alt="..."> -->
+                <img src="{{ URL::to('/') }}/images/login/3.jpg"class="d-block w-100" style="height:90vh"   />
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Welcome to Laravel Curd Application with Social Login Multi-image upload and generate pdf </h2>
+                    <button class="btn btn-danger">Latest Technology</button>
+                    <button class="btn btn-primary">Web Development</button>
+                  
+                </div>
+            </div>
+            <div class="carousel-item">
+                <!-- <img src="2.jpg" class="d-block w-100" alt="..."> -->
+                <img src="{{ URL::to('/') }}/images/login/2.jpg"class="d-block w-100 " style="height:90vh"  />
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Learning new technology day by day </h2>
+                   
+                    <button class="btn btn-danger"> Laravel become best among all</button>
+                    <button class="btn btn-primary">Generate pdf</button>
+                   
+                </div>
+            </div>
+            
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+               
+
+
+
 @endsection

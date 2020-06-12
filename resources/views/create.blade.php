@@ -63,7 +63,8 @@
 	<div class="form-group">
 		<label class="col-md-4 text-right">Select Profile Image</label>
 		<div class="col-md-8">
-			<input type="file" name="image" />
+			<!-- <input type="file" name="image" /> -->
+			<input required type="file" class="form-control" name="image[]" placeholder="address" multiple>
 		</div>
 	</div>
 	<br /><br /><br />

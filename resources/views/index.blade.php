@@ -35,8 +35,22 @@
 		<th width="30%">Action</th>
 	</tr>
 	@foreach($data as $row)
-		<tr>
-			<td><img src="{{ URL::to('/') }}/images/{{ $row->image }}" class="rounded-circle" width="100"  /></td>
+		<tr> 
+						<!-- // for only one image works -->
+						<!-- <td><img src="{{ URL::to('/') }}/images/{{ ($row->image) }}" class="rounded-circle" width="100"  /></td> -->
+
+
+
+						<!-- // For multiple images to get first works -->
+						<td><img src="{{ URL::to('/') }}/images/{{ explode("|", $row->image)[0]  }}" class="rounded-circle" width="100"  /></td>
+			
+
+						<!-- // For multiple images to get All images works -->
+						<!-- https://stackoverflow.com/questions/59722228/laravel-multiple-images-explode-implode -->
+						<!-- @foreach (explode('|', $row->image) as $img)
+						<td><img src="{{ URL::to('/') }}/images/{{ $img }}" class="rounded-circle" width="100"  /></td>
+						@endforeach -->
+
 			<td>{{ $row->first_name }}</td>
 			<td>{{ $row->last_name }}</td>
 			<td> {{$row->address}} </td>

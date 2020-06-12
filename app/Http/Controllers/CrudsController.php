@@ -77,20 +77,36 @@ class CrudsController extends Controller
             'first_name'    =>  'required',
             'last_name'     =>  'required',
             'address'     =>  'required',
-            'image'         =>  'required|image|max:2048',
+            // 'image'         =>  'required|image|max:2048',
+            'image'         =>  'required',
              'desc'          =>  'required|min:10'
-        ]);
+        ]); 
 
-        $image = $request->file('image');
+        // ----------------------For multiple Images----------------
+        $image_a=array();
+    if($files=$request->file('image')){
+        foreach($files as $file){
+            $name=$file->getClientOriginalName();
+            $file->move('images',$name);
+            $image_a[]=$name;
+        }
+    }
+        // ----------------------For multiple Images----------------
+        // $image = $request->file('image'); // for single image
 
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);
+        // $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        // $image->move(public_path('images'), $new_name);
         $form_data = array(
             'first_name'       =>   $request->first_name,
             'last_name'        =>   $request->last_name,
             'address'     =>  $request->address,
-            'image'            =>   $new_name,
+           // 'image'            =>   $new_name, // for single image
+           'image'=>  implode("|", $image_a), // for multiple images
+        //    'image'=>  json_encode($image_a),
+        //'image'=>  $image_a,
+       
              'desc'        =>   $request->desc,
+
         );
 
         Crud::create($form_data);
@@ -122,11 +138,24 @@ class CrudsController extends Controller
                 'first_name'    =>  'required',
                 'last_name'     =>  'required',
                 'address'     =>  'required',
-                'image'         =>  'required|image|max:2048',
+                // 'image'         =>  'required|image|max:2048',
+                'image'        =>'required',
                  'desc'         =>'required'
             ]);
-            $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
+            //for single images
+            // $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            // $image->move(public_path('images'), $image_name);
+
+                    // ----------------------For multiple Images----------------
+                $image_a=array();
+                if($files=$request->file('image')){
+                    foreach($files as $file){
+                        $name=$file->getClientOriginalName();
+                        $file->move('images',$name);
+                        $image_a[]=$name;
+                    }
+                }
+
         }
         else
         {
@@ -143,7 +172,10 @@ class CrudsController extends Controller
             'first_name'    =>  $request->first_name,
             'last_name'     =>  $request->last_name,
             'address'     =>  $request->address,
-            'image'         =>  $image_name,
+            // while uploading single image
+            // 'image'         =>  $image_name,
+            // While uploading multiple images
+            'image'=>  implode("|", $image_a),
             'desc'          =>$request->desc
         );
 

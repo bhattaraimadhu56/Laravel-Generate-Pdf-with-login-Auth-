@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Below routes are coming Automatically 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('login');
+// });
+Route::get('/login', 'CrudsController@index')->name('crud');
+Route::get('/', 'CrudsController@index')->name('crud');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
