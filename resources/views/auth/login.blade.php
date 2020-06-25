@@ -78,12 +78,12 @@
  <div id="carouselExampleCaptions" class="carousel slide carousel-fade " data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
                   </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <!-- <img src="1.jpg" class="d-block w-100" alt="..."> -->
-                <img src="{{ URL::to('/') }}/images/login/3.jpg"class="d-block w-100" style="height:90vh"   />
+                <img src="{{ URL::to('/') }}/images/login/1.jpg"class="d-block w-100" style="height:90vh"   />
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Welcome to Laravel Curd Application with Social Login Multi-image upload and generate pdf </h2>
                     <button class="btn btn-danger">Latest Technology</button>

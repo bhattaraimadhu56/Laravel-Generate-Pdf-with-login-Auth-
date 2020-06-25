@@ -58,12 +58,12 @@
 			<td>
 				
 				<form action="{{ route('crud.destroy', $row->id) }}" method="post">
-					<a href="{{ route('crud.downloadPdf', $row->id) }}"  class="btn btn-success">Download</a>
-					<a href="{{ route('crud.show', $row->id) }}" class="btn btn-primary">Show</a>
-					<a href="{{ route('crud.edit', $row->id) }}" class="btn btn-warning">Edit</a>
+					<a href="{{ route('crud.downloadPdf', $row->id) }}"  class="btn btn-success btn-sm">Download</a>
+					<!-- <a href="{{ route('crud.show', $row->id) }}" class="btn btn-primary btn-sm">Show</a> -->
+					<a href="{{ route('crud.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
 					@csrf
 					@method('DELETE')
-					<button type="submit" class="btn btn-danger"  onClick="return confirm('Are you sure you want to delete ?');">Delete</button>
+					<button type="submit" class="btn btn-danger btn-sm"  onClick="return confirm('Are you sure you want to delete ?');">Delete</button>
 					
 
 				</form>
